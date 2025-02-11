@@ -12,11 +12,11 @@ function App() {
         <div className="flex flex-row justify-between w-full">
           <div className="flex flex-row">
             <img src={logo} alt="Logo" className="w-20 h-20" />
-            <div className="ml-10 text-white text-[55px] font-bold -mt-[13px]">
+            <div className="ml-10 text-white text-[55px] font-bold ">
               M.I.
             </div>
           </div>
-          <div className="flex flex-row space-x-20 text-white self-end mb-5 text-[44px] font-medium">
+          <div className="flex flex-row space-x-20 text-white self-end mb-5 text-[28px] font-semibold">
             <div>About</div>
             <div>Project</div>
             <div>Demo</div>
@@ -31,7 +31,7 @@ function App() {
             Lorem ipsum odor amet, consectetuer adipiscing elit. Imperdiet tempor vehicula leo mauris semper dolor. Varius gravida urna ultrices lacus dictum feugiat ornare imperdiet. Laoreet vel platea purus; pretium in in a quis. Per tincidunt maximus inceptos consectetur magnis dignissim. Ante vivamus magna blandit tempor senectus ex iaculis. Iaculis mollis nam hac fermentum magnis lobortis leo. Quisque id phasellus sodales vulputate malesuada tortor platea elementum sed?
             </div>
           </div>
-          <div className="text-white pt-16">
+          <div className="text-white pt-20">
             <div className="font-bold text-[35px]">
               How does our project work?
             </div>
@@ -97,15 +97,15 @@ function App() {
         className="flex flex-col p-20 items-start relative z-10 w-full h-[100vh] bg-cover bg-center"
         style={{ backgroundImage: `url(${bgl})` }}
       >
-        <div className="flex justify-center w-full -mt-[100px]">
-          <button className="bg-[#5617B0] px-8 py-3 text-white rounded-xl text-[22px] mt-10 font-semibold">Generate Features</button>
+        <div className="flex justify-center w-full -mt-[60px]">
+          <button className="bg-[#5617B0] px-8 py-3 text-white rounded-xl text-[22px] font-semibold">Generate Features</button>
         </div>
-        <div className="text-white pt-20 px-[120px]">
+        <div className="text-white pt-24 px-[120px]">
           <div className="text-[35px] font-bold">Output:</div>
           <div className="pt-10 text-[18] font-medium">Lorem ipsum odor amet, consectetuer adipiscing elit. Imperdiet tempor vehicula leo mauris semper dolor. Varius gravida urna ultrices lacus dictum feugiat ornare imperdiet. Laoreet vel platea purus; pretium in in a quis. Per tincidunt maximus inceptos consectetur magnis dignissim. Ante vivamus magna blandit tempor senectus ex iaculis. Iaculis mollis nam hac fermentum magnis lobortis leo. Quisque id phasellus sodales vulputate malesuada tortor platea elementum sed?</div>
         </div>
       </div>
-      <footer className="bg-black text-white px-[50px] pt-7 pb-2 -mt-40 z-20">
+      <footer className="bg-black text-white px-[50px] pt-7 pb-2 -mt-60 z-20">
       <div className="flex flex-col md:flex-row justify-between items-start space-y-6 ">
         <div className="max-w-1/2">
           <h2 className="text-[35px] font-semibold flex items-end">
