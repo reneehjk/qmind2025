@@ -40,6 +40,23 @@ function App() {
     }
   };
 
+  // Function to handle drag-and-drop file upload
+  const handleDrop = (e, setFile) => {
+    e.preventDefault();
+    const file = e.dataTransfer.files[0];
+    if (
+      file &&
+      (file.type === "application/msword" ||
+        file.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ||
+        file.type === "text/plain" ||
+        file.type === "application/pdf")
+    ) {
+      setFile(file);
+    } else {
+      alert("Please upload a .doc, .docx, .pdf, or .txt file.");
+    }
+  };
+
   // Function to delete uploaded file
   const deleteFile = (setFile) => {
     setFile(null);
@@ -167,17 +184,23 @@ function App() {
               <div className="flex flex-row justify-between mt-[14px] space-x-4">
                 <div className="flex flex-col w-1/2">
                   <div className="text-[22px] mb-5">Positive Prompt File</div>
-                  <label className="custom-file-upload">
-                    <input
-                      type="file"
-                      onChange={(e) => handleFileUpload(e, setPositivePromptFile)}
-                      className="hidden"
-                      accept=".doc,.docx,.txt,.pdf"
-                    />
-                    <span className="bg-white text-black px-4 py-2 rounded cursor-pointer">
+                  <div
+                    className="border-2 border-dashed border-white p-10 flex flex-col items-center justify-center cursor-pointer"
+                    onDragOver={(e) => e.preventDefault()}
+                    onDrop={(e) => handleDrop(e, setPositivePromptFile)}
+                  >
+                    <p className="text-white mb-4">Drag & Drop file here</p>
+                    <div className="mb-4">or</div>
+                    <label className="bg-white text-black px-4 py-2 rounded cursor-pointer">
                       Choose File
-                    </span>
-                  </label>
+                      <input
+                        type="file"
+                        onChange={(e) => handleFileUpload(e, setPositivePromptFile)}
+                        className="hidden"
+                        accept=".doc,.docx,.txt,.pdf"
+                      />
+                    </label>
+                  </div>
                   {positivePromptFile && (
                     <div className="flex items-center mt-4">
                       <button
@@ -194,17 +217,23 @@ function App() {
                 </div>
                 <div className="flex flex-col w-1/2">
                   <div className="text-[22px] mb-5">Negative Prompt File</div>
-                  <label className="custom-file-upload">
-                    <input
-                      type="file"
-                      onChange={(e) => handleFileUpload(e, setNegativePromptFile)}
-                      className="hidden"
-                      accept=".doc,.docx,.txt,.pdf"
-                    />
-                    <span className="bg-white text-black px-4 py-2 rounded cursor-pointer">
+                  <div
+                    className="border-2 border-dashed border-white p-10 flex flex-col items-center justify-center cursor-pointer"
+                    onDragOver={(e) => e.preventDefault()}
+                    onDrop={(e) => handleDrop(e, setNegativePromptFile)}
+                  >
+                    <p className="text-white mb-4">Drag & Drop file here</p>
+                    <div className="mb-4">or</div>
+                    <label className="bg-white text-black px-4 py-2 rounded cursor-pointer">
                       Choose File
-                    </span>
-                  </label>
+                      <input
+                        type="file"
+                        onChange={(e) => handleFileUpload(e, setNegativePromptFile)}
+                        className="hidden"
+                        accept=".doc,.docx,.txt,.pdf"
+                      />
+                    </label>
+                  </div>
                   {negativePromptFile && (
                     <div className="flex items-center mt-4">
                       <button
@@ -226,7 +255,7 @@ function App() {
               <div className="flex flex-row justify-between mt-[14px] space-x-4">
                 <div className="flex flex-col w-1/2">
                   <div className="text-[22px] mb-5">Positive Threshold</div>
-                  <div className="flex items-center">
+                  <div className="flex flex-col items-center">
                     <input
                       type="number"
                       value={positiveThreshold}
@@ -241,23 +270,25 @@ function App() {
                       max="1.0"
                       step="0.1"
                     />
-                    <button
-                      onClick={() => adjustThreshold(positiveThreshold, setPositiveThreshold, -0.1)}
-                      className="bg-[#7EB0D0] text-white px-3 py-[7px]"
-                    >
-                      -
-                    </button>
-                    <button
-                      onClick={() => adjustThreshold(positiveThreshold, setPositiveThreshold, 0.1)}
-                      className="bg-[#1384CF] text-white px-3 py-[7px]"
-                    >
-                      +
-                    </button>
+                    <div className="w-full">
+                      <button
+                        onClick={() => adjustThreshold(positiveThreshold, setPositiveThreshold, -0.1)}
+                        className="bg-[#7EB0D0] text-white w-1/2 py-[7px]"
+                      >
+                        -
+                      </button>
+                      <button
+                        onClick={() => adjustThreshold(positiveThreshold, setPositiveThreshold, 0.1)}
+                        className="bg-[#1384CF] text-white w-1/2 py-[7px]"
+                      >
+                        +
+                      </button>
+                    </div>
                   </div>
                 </div>
                 <div className="flex flex-col w-1/2">
                   <div className="text-[22px] mb-5">Negative Threshold</div>
-                  <div className="flex items-center">
+                  <div className="flex flex-col items-center">
                     <input
                       type="number"
                       value={negativeThreshold}
@@ -272,18 +303,20 @@ function App() {
                       max="1.0"
                       step="0.1"
                     />
-                    <button
-                      onClick={() => adjustThreshold(negativeThreshold, setNegativeThreshold, -0.1)}
-                      className="bg-[#DA83AE] text-white px-3 py-[7px]"
-                    >
-                      -
-                    </button>
-                    <button
-                      onClick={() => adjustThreshold(negativeThreshold, setNegativeThreshold, 0.1)}
-                      className="bg-[#DB1377] text-white px-3 py-[7px]"
-                    >
-                      +
-                    </button>
+                    <div className="w-full">
+                      <button
+                        onClick={() => adjustThreshold(negativeThreshold, setNegativeThreshold, -0.1)}
+                        className="bg-[#DA83AE] text-white w-1/2 py-[7px]"
+                      >
+                        -
+                      </button>
+                      <button
+                        onClick={() => adjustThreshold(negativeThreshold, setNegativeThreshold, 0.1)}
+                        className="bg-[#DB1377] text-white w-1/2 py-[7px]"
+                      >
+                        +
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -301,7 +334,7 @@ function App() {
 
       {/* Footer Section */}
       <footer className="bg-black text-white px-[50px] pt-7 pb-4 z-20 relative border-t-[0.5px] border-[#808080]">
-        <div className="flex flex-col md:flex-row justify-between items-start space-y-6 ">
+        <div className="flex flex-col md:flex-row justify-between items-end  ">
           <div className="max-w-1/2">
             <h2 className="text-[35px] font-semibold flex items-end">
               <span className="mr-4">
@@ -315,15 +348,15 @@ function App() {
               urna ultrices lacus dictum feugiat ornare imperdiet.
             </p>
           </div>
-          <div className="mr-40">
+          <div className="mr-10">
             <h3 className="text-[28px] font-semibold">Contributors:</h3>
             <div className="grid grid-cols-3 gap-x-20 gap-y-2 text-[18px] mt-2 font-medium">
-              <span>Name</span>
-              <span>Name</span>
-              <span>Name</span>
-              <span>Name</span>
-              <span>Name</span>
-              <span>Name</span>
+              <span>David Courtis</span>
+              <span>Jagrit</span>
+              <span>Bridgitte Rauch</span>
+              <span>Dhruv Popli</span>
+              <span>David Krayacich</span>
+              <span>Renee Kim</span>
             </div>
           </div>
         </div>
