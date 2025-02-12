@@ -348,7 +348,7 @@ function App() {
               urna ultrices lacus dictum feugiat ornare imperdiet.
             </p>
           </div>
-          <div className="mr-10">
+          <div className="mr-4">
             <h3 className="text-[28px] font-semibold">Contributors:</h3>
             <div className="grid grid-cols-3 gap-x-20 gap-y-2 text-[18px] mt-2 font-medium">
               <span>David Courtis</span>
