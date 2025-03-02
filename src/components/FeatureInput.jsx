@@ -4,7 +4,7 @@ const FeatureInput = ({ featureId, setFeatureId, posMean, setPosMean, negMean, s
   return (
     <div className="bg-white flex flex-row justify-between px-10 py-5 w-full space-x-5">
       <div className="flex flex-col w-1/4">
-        <div className="text-black font-bold text-[22px] flex self-center">Feature ID</div>
+        <div className="text-black font-semibold text-[22px] flex self-center">Feature ID</div>
         <input
           type="text"
           value={featureId}
@@ -15,7 +15,7 @@ const FeatureInput = ({ featureId, setFeatureId, posMean, setPosMean, negMean, s
         <div className="text-black self-end text-[14px]">(ex. 1477)</div>
       </div>
       <div className="flex flex-col w-1/4">
-        <div className="text-black font-bold text-[22px] flex self-center">Pos. Mean</div>
+        <div className="text-black font-semibold text-[22px] flex self-center">Pos. Mean</div>
         <input
           type="text"
           value={posMean}
@@ -26,7 +26,7 @@ const FeatureInput = ({ featureId, setFeatureId, posMean, setPosMean, negMean, s
         <div className="text-black self-end text-[14px]">(ex. 0.00 - 1.00)</div>
       </div>
       <div className="flex flex-col w-1/4">
-        <div className="text-black font-bold text-[22px] flex self-center">Neg. Mean</div>
+        <div className="text-black font-semibold text-[22px] flex self-center">Neg. Mean</div>
         <input
           type="text"
           value={negMean}
@@ -37,7 +37,7 @@ const FeatureInput = ({ featureId, setFeatureId, posMean, setPosMean, negMean, s
         <div className="text-black self-end text-[14px]">(ex. -1.00 - 0.00)</div>
       </div>
       <div className="flex flex-col w-1/4">
-        <div className="text-black font-bold text-[22px] flex self-center">Ablation Val.</div>
+        <div className="text-black font-semibold text-[22px] flex self-center">Ablation Val.</div>
         <input
           type="text"
           value={ablationVal}
