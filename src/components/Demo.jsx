@@ -4,7 +4,7 @@ import ThresholdInput from "./ThresholdInput";
 
 const Demo = ({ demoRef, modelName, setModelName, saeRelease, setSaeRelease, saeId, setSaeId, positivePromptFile, setPositivePromptFile, negativePromptFile, setNegativePromptFile, positiveThreshold, setPositiveThreshold, negativeThreshold, setNegativeThreshold, handleFileUpload, handleDrop, deleteFile, adjustThreshold }) => {
   return (
-    <div ref={demoRef} className="px-[120px] text-white w-full space-y-[30px] pt-24">
+    <div ref={demoRef} className=" text-white w-full space-y-[30px] pt-24">
       <div className="font-bold text-[35px]">Try out the SAE Feature Filter Visualization!</div>
       <div className="bg-black w-full py-10 px-10 mt-10 border-white border">
         <div className="text-[28px] font-semibold">Model Details:</div>
