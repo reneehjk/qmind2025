@@ -16,7 +16,7 @@ function App() {
   const [saeId, setSaeId] = useState("");
   const [positivePromptFile, setPositivePromptFile] = useState(null);
   const [negativePromptFile, setNegativePromptFile] = useState(null);
-  const [positiveThreshold, setPositiveThreshold] = useState(0.0);
+  const [positiveThreshold, setPositiveThreshold] = useState(0.00);
   const [negativeThreshold, setNegativeThreshold] = useState(0.0);
 
   // Function to handle smooth scrolling
@@ -64,7 +64,7 @@ function App() {
 
   // Function to increment/decrement threshold values
   const adjustThreshold = (value, setValue, delta) => {
-    const newValue = parseFloat((value + delta).toFixed(1));
+    const newValue = parseFloat((value + delta).toFixed(2));
     if (newValue >= 0.0 && newValue <= 1.0) {
       setValue(newValue);
     }
@@ -76,17 +76,29 @@ function App() {
       <div className="absolute inset-0 z-10">
         <div className="space-y-[100px]">
           <div
+            className="w-full h-[80vh] bg-cover bg-center mt-20"
+            style={{ backgroundImage: `url(${bgr})` }}
+          >
+          </div>
+          <div
+            className="w-full h-[80vh] bg-cover bg-center mb-40"
+            style={{ backgroundImage: `url(${bgm})` }}
+          >
+          </div>
+          <div
+            className="w-full h-[70vh] bg-cover bg-center"
+            style={{ backgroundImage: `url(${bgl})` }}
+          >            
+          </div>
+          <div
             className="w-full h-[80vh] bg-cover bg-center"
             style={{ backgroundImage: `url(${bgr})` }}
           ></div>
           <div
-            className="w-full h-[80vh] bg-cover bg-center"
-            style={{ backgroundImage: `url(${bgm})` }}
-          ></div>
-          <div
             className="w-full h-[70vh] bg-cover bg-center"
             style={{ backgroundImage: `url(${bgl})` }}
-          ></div>
+          >            
+          </div>
         </div>
       </div>
 
@@ -179,7 +191,7 @@ function App() {
                 </div>
               </div>
             </div>
-            <div className="bg-black w-full py-10 px-10 mt-10 border-white border">
+            <div className="bg-black w-full py-10 px-10 mt-5 border-white border">
               <div className="text-[28px] font-semibold">Upload files:</div>
               <div className="flex flex-row justify-between mt-[14px] space-x-4">
                 <div className="flex flex-col w-1/2">
@@ -250,7 +262,7 @@ function App() {
                 </div>
               </div>
             </div>
-            <div className="bg-black w-full py-10 px-10 mt-10 border-white border">
+            <div className="bg-black w-full py-10 px-10 mt-5 border-white border">
               <div className="text-[28px] font-semibold">Set thresholds:</div>
               <div className="flex flex-row justify-between mt-[14px] space-x-4">
                 <div className="flex flex-col w-1/2">
@@ -266,19 +278,19 @@ function App() {
                         }
                       }}
                       className="bg-white w-full text-[14px] text-black p-2 text-center"
-                      min="0.0"
-                      max="1.0"
-                      step="0.1"
+                      min="0.00"
+                      max="1.00"
+                      step="0.01"
                     />
                     <div className="w-full">
                       <button
-                        onClick={() => adjustThreshold(positiveThreshold, setPositiveThreshold, -0.1)}
+                        onClick={() => adjustThreshold(positiveThreshold, setPositiveThreshold, -0.01)}
                         className="bg-[#7EB0D0] text-white w-1/2 py-[7px]"
                       >
                         -
                       </button>
                       <button
-                        onClick={() => adjustThreshold(positiveThreshold, setPositiveThreshold, 0.1)}
+                        onClick={() => adjustThreshold(positiveThreshold, setPositiveThreshold, 0.01)}
                         className="bg-[#1384CF] text-white w-1/2 py-[7px]"
                       >
                         +
@@ -294,24 +306,24 @@ function App() {
                       value={negativeThreshold}
                       onChange={(e) => {
                         const value = parseFloat(e.target.value);
-                        if (value >= 0.0 && value <= 1.0) {
+                        if (value >= 0.00 && value <= 1.00) {
                           setNegativeThreshold(value);
                         }
                       }}
                       className="bg-white w-full text-[14px] text-black p-2 text-center"
                       min="0.0"
                       max="1.0"
-                      step="0.1"
+                      step="0.01"
                     />
                     <div className="w-full">
                       <button
-                        onClick={() => adjustThreshold(negativeThreshold, setNegativeThreshold, -0.1)}
+                        onClick={() => adjustThreshold(negativeThreshold, setNegativeThreshold, -0.01)}
                         className="bg-[#DA83AE] text-white w-1/2 py-[7px]"
                       >
                         -
                       </button>
                       <button
-                        onClick={() => adjustThreshold(negativeThreshold, setNegativeThreshold, 0.1)}
+                        onClick={() => adjustThreshold(negativeThreshold, setNegativeThreshold, 0.01)}
                         className="bg-[#DB1377] text-white w-1/2 py-[7px]"
                       >
                         +
@@ -325,13 +337,84 @@ function App() {
           <div className="flex justify-center w-full pt-20">
             <button className="bg-[#5617B0] px-8 py-3 text-white rounded-xl text-[22px] font-semibold">Generate Features</button>
           </div>
+          {/* Output Section */}
           <div className="text-white py-18 px-[120px]">
             <div className="text-[35px] font-bold">Output:</div>
-            <div className="pt-5 text-[18] font-medium">Lorem ipsum odor amet, consectetuer adipiscing elit. Imperdiet tempor vehicula leo mauris semper dolor. Varius gravida urna ultrices lacus dictum feugiat ornare imperdiet. Laoreet vel platea purus; pretium in in a quis. Per tincidunt maximus inceptos consectetur magnis dignissim. Ante vivamus magna blandit tempor senectus ex iaculis. Iaculis mollis nam hac fermentum magnis lobortis leo. Quisque id phasellus sodales vulputate malesuada tortor platea elementum sed?</div>
+            <div className="bg-white flex flex-row justify-between px-10 pb-5 pt-3 w-full mt-5 space-x-5">
+              <div className="flex flex-col w-1/3">
+                <div className="text-black font-bold text-[22px] flex self-center">Feature ID</div>
+                <div className="text-white bg-black flex justify-center w-full">
+                  <div className="text-[22px]">1174</div>
+                </div>
+              </div>
+              <div className="flex flex-col w-1/3">
+                <div className="text-black font-bold text-[22px] flex self-center">Pos. Mean</div>
+                <div className="text-white bg-black flex justify-center w-full">
+                  <div className="text-[22px]">0.87</div>
+                </div>
+              </div>
+              <div className="flex flex-col w-1/3">
+                <div className="text-black font-bold text-[22px] flex self-center">Neg. Mean</div>
+                <div className="text-white bg-black flex justify-center w-full">
+                  <div className="text-[22px]">-0.87</div>
+                </div>
+              </div>
+            </div>
+            <div className="text-[28px] font-semibold mt-14">Neuronpedia:</div>
+            <img src={logo} className="w-full mt-5"/>
+            <div className="flex flex-row justify-between mt-2">
+              <div>arrow previous</div>
+              <div>arrow next</div>
+            </div>
+            <div className="font-semibold text-[44px] mt-20">Try an LLM with the custom features!</div>
+            <div className="bg-white flex flex-row justify-between px-10 py-5 w-full space-x-5">
+              <div className="flex flex-col w-1/4">
+                <div className="text-black font-bold text-[22px] flex self-center">Feature ID</div>
+                <div className="border border-black py-4"></div>
+                <div className="flex self-end text-black">(ex. 1477)</div>
+              </div>
+              <div className="flex flex-col w-1/4">
+                <div className="text-black font-bold text-[22px] flex self-center">Pos. Mean</div>
+                <div className="border border-black py-4"></div>
+                <div className="flex self-end text-black">(ex. 0.00 - 1.00)</div>
+              </div>
+              <div className="flex flex-col w-1/4">
+                <div className="text-black font-bold text-[22px] flex self-center">Neg. Mean</div>
+                <div className="border border-black py-4"></div>
+                <div className="flex self-end text-black">(ex. -1.00 - 0.00)</div>
+              </div>
+              <div className="flex flex-col w-1/4">
+                <div className="text-black font-bold text-[22px] flex self-center">Ablation Val.</div>
+                <div className="border border-black py-4"></div>
+                <div className="flex self-end text-black">(ex. 0.0 - 4.0)</div>
+              </div>
+            </div>
+            <div className="mt-10 font-semibold text-[35px]">Prompt:</div>
+            <div className="rounded-2xl w-full bg-[#444444] p-4 flex flex-row space-x-4 items-center">
+              <div className="border border-white rounded-2xl p-2 w-full">
+                <div className="p-2 text-[28px]">Type any prompt...</div>
+              </div>
+              <div className="border border-white rounded-full h-full">
+                <div className="h-full">arrow</div>
+              </div>
+            </div>
+            <div className="flex flex-row w-full space-x-5 mt-14">
+              <div>
+                <div className="text-[28px] font-semibold"><strong>Before</strong> custom features</div>
+                <div className="bg-white p-5 mt-3">
+                  <div className="text-black text-[20px]">Lorem ipsum odor amet, consectetuer adipiscing elit. Imperdiet tempor vehicula leo mauris semper dolor. Varius gravida urna ultrices lacus dictum feugiat ornare imperdiet. Laoreet vel platea purus; pretium in in a quis. Per tincidunt maximus inceptos consectetur magnis dignissim. Ante vivamus magna blandit tempor senectus ex iaculis. Iaculis mollis nam hac fermentum magnis lobortis leo. Quisque id phasellus sodales vulputate malesuada tortor platea elementum sed?</div>
+                </div>
+              </div>
+              <div>
+                <div className="text-[28px] font-semibold"><strong>After</strong> custom features</div>
+                <div className="bg-white p-5 mt-3">
+                  <div className="text-black text-[20px]">Lorem ipsum odor amet, consectetuer adipiscing elit. Imperdiet tempor vehicula leo mauris semper dolor. Varius gravida urna ultrices lacus dictum feugiat ornare imperdiet. Laoreet vel platea purus; pretium in in a quis. Per tincidunt maximus inceptos consectetur magnis dignissim. Ante vivamus magna blandit tempor senectus ex iaculis. Iaculis mollis nam hac fermentum magnis lobortis leo. Quisque id phasellus sodales vulputate malesuada tortor platea elementum sed?</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-
       {/* Footer Section */}
       <footer className="bg-black text-white px-[50px] pt-7 pb-4 z-20 relative border-t-[0.5px] border-[#808080]">
         <div className="flex flex-col md:flex-row justify-between items-end  ">
